@@ -14,28 +14,33 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Pessoa {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(nullable = false)
-    private String nome;
+    private String name;
 
     @Column(nullable = false)
     private String email;
 
-    public Pessoa() {
+    @Column(nullable = false)
+    private String description;
+
+    @Column(nullable = false)
+    private Double price;
+
+    @Column(nullable = false)
+    private String imgURL;
+
+    
+
+    public Product() {
     }
     
-    public Pessoa(UUID id, String nome, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-    }
-
-
+    
     
 
 }
