@@ -1,53 +1,42 @@
 package com.est_jpa.estudo_jpa.Entity;
 
-import java.util.*;
+import java.sql.Date;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
 @RequiredArgsConstructor
-@Table(name = "tb_users")
-public class User {
+@Entity
+@Table(name = "tb_orders")
+public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private UUID id;
 
     @Column(nullable = false)
-    private String name;
+    private Date date;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private User client;
     
-    @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private String phone;
-
-    @OneToMany(mappedBy = "client")
-    @Setter(AccessLevel.NONE)
-    private List<Order> orders = new ArrayList<>();
-
-    public User(String name, String email, String password, String phone) {
-        super();
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
+    public Order(UUID id, Date date, User client) {
+        this.id = id;
+        this.date = date;
+        this.client = client;
     }
 
     @Override
@@ -66,7 +55,7 @@ public class User {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        User other = (User) obj;
+        Order other = (Order) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -74,7 +63,6 @@ public class User {
             return false;
         return true;
     }
-    
-    
+
     
 }
