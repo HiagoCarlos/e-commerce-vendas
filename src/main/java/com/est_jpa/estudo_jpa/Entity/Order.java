@@ -1,6 +1,6 @@
 package com.est_jpa.estudo_jpa.Entity;
 
-import java.sql.Date;
+import java.time.Instant;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -27,14 +27,13 @@ public class Order {
     private UUID id;
 
     @Column(nullable = false)
-    private Date date;
+    private Instant date;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
     
-    public Order(UUID id, Date date, User client) {
-        this.id = id;
+    public Order(Instant date, User client) {
         this.date = date;
         this.client = client;
     }
