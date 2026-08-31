@@ -2,6 +2,7 @@ spring:
   application:
     name: estudo-jpa
 
+
   profiles:
     active: test
 
@@ -17,6 +18,7 @@ spring:
       path: /h2-console
 
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.H2Dialect

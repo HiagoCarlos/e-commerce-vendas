@@ -3,6 +3,8 @@ package com.est_jpa.estudo_jpa.Entity;
 import java.time.Instant;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,15 +28,17 @@ public class Order {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private UUID id;
 
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone="GMT")    
     @Column(nullable = false)
-    private Instant date;
+    private Instant moment;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
     
-    public Order(Instant date, User client) {
-        this.date = date;
+    public Order(Instant moment, User client) {
+        this.moment = moment;
         this.client = client;
     }
 
