@@ -25,9 +25,6 @@ public class TestConfig implements CommandLineRunner{
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
     private final CategoryRepository categoryRepository;
-    
-
-    
 
     @Override
     public void run(String... args) throws Exception {
