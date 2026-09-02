@@ -1,9 +1,10 @@
-package com.est_jpa.estudo_jpa.Entity;
+package com.est_jpa.estudo_jpa.User;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.est_jpa.estudo_jpa.Order.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;

@@ -1,45 +1,29 @@
-package com.est_jpa.estudo_jpa.Entity;
+package com.est_jpa.estudo_jpa.Category;
 
-import java.time.Instant;
 import java.util.UUID;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
 @Entity
-@Table(name = "tb_orders")
-public class Order {
-
+@Table(name = "tb_category")
+public class Category {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone="GMT")    
     @Column(nullable = false)
-    private Instant moment;
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private User client;
-    
-    public Order(Instant moment, User client) {
-        this.moment = moment;
-        this.client = client;
+    public Category() {
+    }
+
+    public Category(String name) {
+        this.name = name;
     }
 
     @Override
@@ -58,7 +42,7 @@ public class Order {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Order other = (Order) obj;
+        Category other = (Category) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -67,5 +51,7 @@ public class Order {
         return true;
     }
 
+    
+    
     
 }

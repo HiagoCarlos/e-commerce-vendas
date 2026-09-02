@@ -1,4 +1,4 @@
-package com.est_jpa.estudo_jpa.resources;
+package com.est_jpa.estudo_jpa.Order;
 
 import java.util.List;
 import java.util.UUID;
@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.est_jpa.estudo_jpa.Entity.Order;
-import com.est_jpa.estudo_jpa.Service.OrderService;
+
 import lombok.RequiredArgsConstructor;
 
 

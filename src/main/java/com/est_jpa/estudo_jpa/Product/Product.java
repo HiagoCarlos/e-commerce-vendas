@@ -1,4 +1,4 @@
-package com.est_jpa.estudo_jpa.Entity;
+package com.est_jpa.estudo_jpa.Product;
 
 import java.util.UUID;
 
