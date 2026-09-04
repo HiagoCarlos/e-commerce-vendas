@@ -1,6 +1,10 @@
 package com.est_jpa.estudo_jpa.Category;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
+
+import com.est_jpa.estudo_jpa.Product.Product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tb_category")
@@ -18,7 +24,9 @@ public class Category {
 
     @Column(nullable = false)
     private String name;
-
+    
+    @Setter(AccessLevel.NONE)
+    private Set<Product> products = new HashSet<>();
     public Category() {
     }
 
