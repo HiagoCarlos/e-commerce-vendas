@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class Category {
     private String name;
     
     @Setter(AccessLevel.NONE)
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
     public Category() {
     }
