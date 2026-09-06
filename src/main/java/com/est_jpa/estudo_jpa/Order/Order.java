@@ -1,11 +1,15 @@
 package com.est_jpa.estudo_jpa.Order;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
+import com.est_jpa.estudo_jpa.Payment.Payment;
 import com.est_jpa.estudo_jpa.User.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -15,6 +19,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +45,12 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
+    
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
+    
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
@@ -49,6 +61,14 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
+    public Double getTotal() {
+        double sum = 0.0;
+        for (OrderItem x : items) {
+            sum += x.getSubTotal();
+        }
+        return sum;
+    }
+    
     @Override
     public int hashCode() {
         final int prime = 31;

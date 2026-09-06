@@ -1,45 +1,72 @@
 package com.est_jpa.estudo_jpa.Order;
-import com.est_jpa.estudo_jpa.Order.OrderItemPK;
 import com.est_jpa.estudo_jpa.Product.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
+@Table(name = "tb_order_item")
 public class OrderItem {
-    
+    @Id 
+	private OrderItemPK id = new OrderItemPK();
 
-    private OrderItemPK id;
     private Integer quantity;
     private Double price;
 
     public OrderItem() {
-    }
+	}
 
-    public OrderItem(Order order, Product product, Integer quantity, Double price) {
-        super();
-        id.setOrder(order);
-        id.setProduct(product);
-        this.quantity = quantity;
-        this.price = price;
-    }
+	public OrderItem(Order order, Product product, Integer quantity, Double price) {
+		super();
+		id.setOrder(order);
+		id.setProduct(product);
+		this.quantity = quantity;
+		this.price = price;
+	}
 
-    public Order getOrder() {
-        return id.getOrder();
-    }
+	@JsonIgnore
+	public Order getOrder() {
+		return id.getOrder();
+	}
 
-    public void setOrder(Order order) {
-        id.setOrder(order);
-    }
+	public void setOrder(Order order) {
+		id.setOrder(order);
+	}
 
-    public void setProduct(Product product) {
-        id.setProduct(product);
-    }
+	public Product getProduct() {
+		return id.getProduct();
+	}
 
-    public Product getProduct() {
-        return id.getProduct();
-    }
+	public void setProduct(Product product) {
+		id.setProduct(product);
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Double getSubTotal() {
+		return price * quantity;
+	}
+  
 
     @Override
     public int hashCode() {

@@ -5,6 +5,9 @@ import java.util.Set;
 import java.util.UUID;
 
 import com.est_jpa.estudo_jpa.Category.Category;
+import com.est_jpa.estudo_jpa.Order.Order;
+import com.est_jpa.estudo_jpa.Order.OrderItem;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -51,7 +55,8 @@ public class Product {
     @Setter(AccessLevel.NONE)
     private Set<Category> categories = new HashSet<>();
 
-    
+    @OneToMany(mappedBy = "id.product")
+	private Set<OrderItem> items = new HashSet<>();
 
     public Product() {
     }
@@ -64,7 +69,14 @@ public class Product {
         this.price = price;
         this.imgURL = imgURL;
     }
-
+    @JsonIgnore
+	public Set<Order> getOrders() {
+		Set<Order> set = new HashSet<>();
+		for (OrderItem x : items) {
+			set.add(x.getOrder());
+		}
+		return set;
+	}
     @Override
     public int hashCode() {
         final int prime = 31;

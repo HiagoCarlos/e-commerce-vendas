@@ -1,12 +1,10 @@
 package com.est_jpa.estudo_jpa.Order;
 
-import org.hibernate.annotations.ManyToAny;
-
 import com.est_jpa.estudo_jpa.Product.Product;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 @Getter 
@@ -14,11 +12,11 @@ import lombok.Setter;
 @Embeddable
 public class OrderItemPK {
     
-    @ManyToMany
+    @ManyToOne
     @JoinColumn (name = "order_id")
     private Order order;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn (name = "product_id")
     private Product product;
 
