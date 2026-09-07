@@ -116,7 +116,7 @@ Este repositório não tem fins comerciais — é um projeto de **estudo e prát
 
 ## 📚 Créditos
 
-Projeto baseado no curso [Spring Boot: aprenda a criar sistemas Java completos](https://www.udemy.com/) do professor **Nélio Alves**.
+Projeto baseado no curso [Java COMPLETO Programação Orientada a Objetos + Projetos](https://www.udemy.com/course/java-curso-completo/?couponCode=KEEPLEARNING/) do professor **Nélio Alves**.
 
 ---
 
